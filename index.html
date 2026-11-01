@@ -18,30 +18,57 @@
   </head>
   <body class="bg-bg flex justify-center items-center">
     <div
-      class="w-130 h-85 rounded-xl border-4 border-[#231d19] grid grid-rows-2 p-3"
+      class="bg-[#faf4dc] w-130 h-85 rounded-xl border-4 border-[#231d19] grid grid-rows-2 p-3"
     >
       <div class="grid grid-cols-16">
         <div class="col-span-5 flex justify-center items-center">
           <div
-            class="w-[100%] h-[100%] border-[3.5px] border-[#231d19] rounded-lg"
-          ></div>
+            class="w-[100%] h-[100%] border-[3.5px] border-[#231d19] rounded-lg flex justify-center items-center p-5 text-center"
+          >
+            Click to add Image
+          </div>
         </div>
-        <div class="bg-green-500 col-span-11 flex flex-col gap-2 px-4 py-3">
+        <div class="col-span-11 flex flex-col gap-2 px-4 py-3">
           <input
             type="text"
             placeholder="Write your name..."
             class="border-[3.5px] rounded-lg w-[75%] h-9 pl-2"
           />
-          <input
-            type="text"
-            placeholder="Give your description..."
-            class="border-[3.5px] rounded-lg w-[90%] h-20 flex pl-2"
-          />
+          <textarea
+            name="description"
+            placeholder="Write your description..."
+            class="border-[3.5px] rounded-lg w-[90%] h-20 pl-2 resize-none"
+          ></textarea>
         </div>
       </div>
-      <div class="grid grid-cols-16">
-        <div class="bg-black col-span-11"></div>
-        <div class="bg-green-300 col-span-5"></div>
+      <div class="flex flex-col gap-3 justify-center">
+        <div class="flex gap-2 items-center">
+          <h2>Email:</h2>
+          <input
+            type="text"
+            name="email"
+            placeholder="Email"
+            class="border-[3.5px] rounded-lg w-[55%] h-7 pl-2"
+          />
+        </div>
+        <div class="flex gap-2 items-center">
+          <h2>Contact:</h2>
+          <input
+            type="text"
+            name="contact"
+            placeholder="Contact"
+            class="border-[3.5px] rounded-lg w-[55%] h-7 pl-2"
+          />
+        </div>
+        <div class="flex gap-2 items-center">
+          <h2>Address:</h2>
+          <input
+            type="text"
+            name="address"
+            placeholder="Address"
+            class="border-[3.5px] rounded-lg w-[55%] h-7 pl-2"
+          />
+        </div>
       </div>
     </div>
   </body>
