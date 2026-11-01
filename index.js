@@ -15,17 +15,25 @@ imgComp.addEventListener("click", (e) => {
   file.click();
 });
 
+file.addEventListener("change", (e) => {
+  img = file.files[0];
+  if (img) {
+    imgComp.innerHTML = "Image Added!";
+  }
+});
+
 imgComp.addEventListener("dragover", (e) => {
   e.preventDefault();
+  imgComp.classList.add("wow");
 });
 
 imgComp.addEventListener("drop", (e) => {
   e.preventDefault();
+  imgComp.classList.remove("wow");
   img = e.dataTransfer.files[0];
-});
-
-file.addEventListener("change", (e) => {
-  img = file.files[0];
+  if (img) {
+    imgComp.innerHTML = "Image Added!";
+  }
 });
 
 form.addEventListener("submit", (e) => {
