@@ -83,7 +83,7 @@ form.addEventListener("submit", (e) => {
 
   saveBtn.addEventListener("click", async (e) => {
     console.log("Start");
-    const pic = await html2canvas(card, { scale: 2 });
+    const pic = await html2canvas(card, { scale: 2, backgroundColor: null });
     console.log("Pic: ", pic);
 
     const link = document.createElement("a");
