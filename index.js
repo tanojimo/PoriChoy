@@ -7,6 +7,8 @@ const phoneComp = document.getElementById("phone");
 const addressComp = document.getElementById("address");
 const form = document.getElementById("form");
 const body = document.querySelector("body");
+let card;
+let saveBtn;
 let img;
 
 imgComp.addEventListener("click", (e) => {
@@ -36,7 +38,7 @@ form.addEventListener("submit", (e) => {
   const url = img ? URL.createObjectURL(img) : "test.jpeg";
 
   body.innerHTML = `
-  <div
+  <div id="card"
       class="relative bg-[#faf4dc] w-130 h-85 rounded-xl border-4 border-[#231d19] grid grid-rows-2 p-3"
     >
       <img
@@ -73,5 +75,20 @@ form.addEventListener("submit", (e) => {
         </div>
       </div>
     </div>
+    <button id="save" class="px-6 py-3 border-2 border-[#231d19] rounded-lg active:bg-[#faf4dc] duration-75">Save an Image</button>
   `;
+
+  card = document.getElementById("card");
+  saveBtn = document.getElementById("save");
+
+  saveBtn.addEventListener("click", async (e) => {
+    console.log("Start");
+    const pic = await html2canvas(card, { scale: 2 });
+    console.log("Pic: ", pic);
+
+    const link = document.createElement("a");
+    link.download = "card.png";
+    link.href = pic.toDataURL("image/png");
+    link.click();
+  });
 });
