@@ -1,0 +1,48 @@
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <script src="https://cdn.jsdelivr.net/npm/@tailwindcss/browser@4"></script>
+    <style type="text/tailwindcss">
+      @theme {
+        --color-bg: #f8f7f3;
+        --color-text: #231d19;
+      }
+      * {
+        text-box-trim: trim-both;
+        text-box-edge: cap alphabetic;
+      }
+    </style>
+    <link rel="stylesheet" href="style.css" />
+    <title>Porichoy</title>
+  </head>
+  <body class="bg-bg flex justify-center items-center">
+    <div
+      class="w-130 h-85 rounded-xl border-4 border-[#231d19] grid grid-rows-2 p-3"
+    >
+      <div class="grid grid-cols-16">
+        <div class="col-span-5 flex justify-center items-center">
+          <div
+            class="w-[100%] h-[100%] border-[3.5px] border-[#231d19] rounded-lg"
+          ></div>
+        </div>
+        <div class="bg-green-500 col-span-11 flex flex-col gap-2 px-4 py-3">
+          <input
+            type="text"
+            placeholder="Write your name..."
+            class="border-[3.5px] rounded-lg w-[75%] h-9 pl-2"
+          />
+          <input
+            type="text"
+            placeholder="Give your description..."
+            class="border-[3.5px] rounded-lg w-[90%] h-20 flex pl-2"
+          />
+        </div>
+      </div>
+      <div class="grid grid-cols-16">
+        <div class="bg-black col-span-11"></div>
+        <div class="bg-green-300 col-span-5"></div>
+      </div>
+    </div>
+  </body>
+</html>
