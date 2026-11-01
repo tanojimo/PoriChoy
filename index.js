@@ -36,6 +36,31 @@ imgComp.addEventListener("drop", (e) => {
   }
 });
 
+const wait = async (element) => {
+  const images = Array.from(element.querySelectorAll("img"));
+
+  await Promise.all(
+    images.map(async (image) => {
+      if (!image.complete) {
+        await new Promise((resolve) => {
+          image.onload = resolve;
+          image.onerror = resolve;
+        });
+      }
+
+      if (image.naturalWidth === 0) {
+        return;
+      }
+
+      try {
+        await image.decode();
+      } catch (error) {
+        console.log(error);
+      }
+    }),
+  );
+};
+
 form.addEventListener("submit", (e) => {
   e.preventDefault();
   const name = nameComp.value;
@@ -47,20 +72,21 @@ form.addEventListener("submit", (e) => {
 
   body.innerHTML = `
   <div id="card"
-      class="relative bg-[#faf4dc] w-130 h-85 rounded-xl border-4 border-[#231d19] grid grid-rows-2 p-3"
+      style="width: 520px; height: 340px;"
+      class="relative bg-[#faf4dc] rounded-xl border-4 border-[#231d19] grid grid-rows-2 p-3"
     >
       <img
         src="hc.svg"
         alt=""
         class="absolute w-30 top-69.5 left-90 rotate-[-12deg]"
       />
-      <div class="grid grid-cols-16">
-        <div class="col-span-5 flex justify-center items-center">
+      <div class="grid grid-cols-16 min-h-0">
+        <div class="col-span-5 min-w-0 min-h-0 flex items-center">
           <div
             id="img"
-            class="w-[100%] h-[100%] border-[3.5px] border-[#231d19] rounded-lg"
+            class="w-full h-full max-h-full overflow-hidden border-[3.5px] border-[#231d19] rounded-lg"
           >
-            <img src="${url}" alt="" class="object-cover w-ful h-full" />
+            <img src="${url}" alt="" class="block object-cover w-full h-full" />
           </div>
         </div>
         <div class="col-span-11 flex flex-col gap-6 px-4 py-5">
@@ -70,29 +96,34 @@ form.addEventListener("submit", (e) => {
       </div>
       <div class="flex flex-col gap-3 justify-center">
         <div class="flex gap-2 items-center">
-          <img src="email.svg" alt="" class="w-7" />
+          <img src="email.png" alt="" class="w-7" />
           <p>${email}</p>
         </div>
         <div class="flex gap-2 items-center">
-          <img src="phone.svg" alt="" class="w-7" />
+          <img src="phone.png" alt="" class="w-7" />
           <p>${phone}</p>
         </div>
         <div class="flex gap-2 items-center">
-          <img src="address.svg" alt="" class="w-7" />
+          <img src="address.png" alt="" class="w-7" />
           <p>${address}</p>
         </div>
       </div>
     </div>
-    <button id="save" class="px-6 py-3 border-2 border-[#231d19] rounded-lg active:bg-[#faf4dc] duration-75">Save an Image</button>
+    <button id="save" class="px-6 py-3 border-2 border-[#231d19] rounded-lg active:bg-[#faf4dc] duration-75">Save as Image</button>
   `;
 
   card = document.getElementById("card");
   saveBtn = document.getElementById("save");
 
   saveBtn.addEventListener("click", async (e) => {
-    console.log("Start");
-    const pic = await html2canvas(card, { scale: 2, backgroundColor: null });
-    console.log("Pic: ", pic);
+    await wait(card);
+
+    const pic = await html2canvas(card, {
+      scale: 2,
+      backgroundColor: null,
+      useCORS: true,
+      logging: true,
+    });
 
     const link = document.createElement("a");
     link.download = "card.png";
