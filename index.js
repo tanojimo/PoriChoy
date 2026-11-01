@@ -73,7 +73,7 @@ form.addEventListener("submit", (e) => {
   body.innerHTML = `
   <div id="card"
       style="width: 520px; height: 340px;"
-      class="relative bg-[#faf4dc] rounded-xl border-4 border-[#231d19] grid grid-rows-2 p-3"
+      class="relative box-border overflow-hidden bg-[#faf4dc] rounded-xl border-4 border-[#231d19] grid grid-rows-[minmax(0,1fr)_minmax(0,1fr)] p-3"
     >
       <img
         src="hc.svg"
@@ -84,12 +84,12 @@ form.addEventListener("submit", (e) => {
         <div class="col-span-5 min-w-0 min-h-0 flex items-center">
           <div
             id="img"
-            class="w-full h-full max-h-full overflow-hidden border-[3.5px] border-[#231d19] rounded-lg"
+            class="w-[152.5px] h-[140px] shrink-0 overflow-hidden border-[3.5px] border-[#231d19] rounded-lg"
           >
             <img src="${url}" alt="" class="block object-cover w-full h-full" />
           </div>
         </div>
-        <div class="col-span-11 flex flex-col gap-6 px-4 py-5">
+        <div class="col-span-11 min-w-0 min-h-0 flex flex-col gap-6 px-4 py-5">
           <h1 class="text-5xl">${name}</h1>
           <p class="text-lg">${desc}</p>
         </div>
