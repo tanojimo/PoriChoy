@@ -43,7 +43,7 @@ form.addEventListener("submit", (e) => {
   const email = emailComp.value;
   const phone = phoneComp.value;
   const address = addressComp.value;
-  const url = img ? URL.createObjectURL(img) : "test.jpeg";
+  const url = img ? URL.createObjectURL(img) : "no-image.jpeg";
 
   body.innerHTML = `
   <div id="card"
